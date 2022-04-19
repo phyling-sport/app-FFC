@@ -39,15 +39,15 @@ if groupe == 'phyling':
     if choose == 'CMJ':
         path='C:/Users/Chevallier/Desktop/Phyling/musculation/data/'+choose+'/resultats/'
         repo = []
-  
-        start = "/Users/Chevallier"
 
-        relative_path = os.path.relpath(path, start)
+        dirname = os.path.dirname(__file__)
+        filename = os.path.join(dirname, 'path')
 
-        st.write(relative_path)
-        for names in os.listdir(relative_path):
-            if names[-1] =='v':
-                repo.append(names)
+        st.write(dirname)
+        st.write(filename)
+#         for names in os.listdir(relative_path):
+#             if names[-1] =='v':
+#                 repo.append(names)
 
 #         df=pd.DataFrame()
 #         for excel_file in repo:
