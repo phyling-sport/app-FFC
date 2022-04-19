@@ -37,11 +37,9 @@ analyse= st.sidebar.selectbox(
 col1, col2 = st.columns([0.8,0.2])
 if groupe == 'phyling':
     if choose == 'CMJ':
-        path='C:/Users/Chevallier/Desktop/Phyling/Musculation/data/'+choose+'/resultats'
-        st.write(path)
+        path='C:/Users/Chevallier/Desktop/Phyling/musculation/data/'+choose+'/resultats/'
         repo = []
         for names in os.listdir(path):
-            st.write(names)
             if names[-1] =='v':
                 repo.append(names)
 
