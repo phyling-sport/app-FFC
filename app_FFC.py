@@ -34,32 +34,32 @@ analyse= st.sidebar.selectbox(
 )
 
 
-# col1, col2 = st.columns([0.8,0.2])
-# if groupe == 'phyling':
-#     if choose == 'CMJ':
-#         path='C:/Users/Chevallier/Desktop/Phyling/musculation/data/'+choose+'/resultats/'
-#         repo = []
-#         for names in os.listdir(path):
-#             if names[-1] =='v':
-#                 repo.append(names)
+col1, col2 = st.columns([0.8,0.2])
+if groupe == 'phyling':
+    if choose == 'CMJ':
+        path='C:/Users/Chevallier/Phyling Dropbox/Phyling/Projets/Data/musculation/'+choose+'/resultats/'
+        repo = []
+        for names in os.listdir(path):
+            if names[-1] =='v':
+                repo.append(names)
 
-#         df=pd.DataFrame()
-#         for excel_file in repo:
-#             df=pd.concat([df,pd.read_csv(path+excel_file,delimiter=';',decimal='.')],axis=0,ignore_index=True)
-#         df=df.dropna()
+        df=pd.DataFrame()
+        for excel_file in repo:
+            df=pd.concat([df,pd.read_csv(path+excel_file,delimiter=';',decimal='.')],axis=0,ignore_index=True)
+        df=df.dropna()
         
-#         if analyse == "Suivi d'indicateurs":
+        if analyse == "Suivi d'indicateurs":
 
-#             with col1:
-#                 st.header(analyse+' '+choose)
-#                 st.subheader(groupe)
+            with col1:
+                st.header(analyse+' '+choose)
+                st.subheader(groupe)
 
-#                 # display the dataset
-#                 if st.checkbox("Voir le tableau de données"):
-#                     st.write("### Enter the number of rows to view")
-#                     rows = st.number_input("", min_value=0,value=1)
-#                     if rows > 0:
-#                         st.dataframe(df.head(rows))
+                # display the dataset
+                if st.checkbox("Voir le tableau de données"):
+                    st.write("### Enter the number of rows to view")
+                    rows = st.number_input("", min_value=0,value=1)
+                    if rows > 0:
+                        st.dataframe(df.head(rows))
 
 #                 sujet = df['athlete_name'].unique().tolist()
 #                 sujet_list = st.multiselect("Athlète",sujet,default=sujet)
