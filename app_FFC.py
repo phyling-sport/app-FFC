@@ -45,9 +45,9 @@ if groupe == 'phyling':
         relative_path = os.path.relpath(path, start)
 
         st.write(relative_path)
-#         for names in os.listdir(path):
-#             if names[-1] =='v':
-#                 repo.append(names)
+        for names in os.listdir(relative_path):
+            if names[-1] =='v':
+                repo.append(names)
 
 #         df=pd.DataFrame()
 #         for excel_file in repo:
