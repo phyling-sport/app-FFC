@@ -60,7 +60,7 @@ if groupe == 'phyling':
                 return f.read().decode("utf-8")
 
         content = read_file("phyling/res_Thomas.csv")
-        st.dataframe(content)
+        st.write(content)
 
 
 
