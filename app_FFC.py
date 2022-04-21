@@ -59,7 +59,7 @@ if groupe == 'phyling':
             with fs.open(filename) as f:
                 return f.read().decode("utf-8")
 
-        content = read_file("phyling/res_Thomas.csv")
+        content = pd.read_csv("phyling/res_Thomas.csv",delimiter=';',decimal='.')
         st.write(content)
 
 
