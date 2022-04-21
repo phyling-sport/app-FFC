@@ -142,7 +142,7 @@ if groupe == 'phyling':
                     
                 
             with col2:
-                        st.image(logo, width=130 )
+#                         st.image(logo, width=130 )
                         st.write("https://phyling.fr")
                 
         else:
@@ -158,7 +158,7 @@ if groupe == 'phyling':
 
                 val = st.selectbox("Indicateur",columns,index=14)
             with col2:
-                st.image(logo, width=130 )
+#                 st.image(logo, width=130 )
                 st.write("https://phyling.fr")
             col3, col4 = st.columns(2)
             res=stats.ttest_1samp(df[df['athlete_name']==sujet_list][val].values, df[val].mean())
@@ -253,7 +253,7 @@ if groupe == 'phyling':
                 st.plotly_chart(fig,use_container_width=True)
                 
             with col2:
-                        st.image(logo, width=130 )
+#                         st.image(logo, width=130 )
                         st.write("https://phyling.fr")
                         
 
