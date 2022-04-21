@@ -52,7 +52,7 @@ if groupe == 'phyling':
                 return pd.read_csv(f,delimiter=';',decimal='.')#.read().decode("utf-8")
 
         content = read_file("phyling/res_Thomas.csv")
-        st.dataframe(content)
+#         st.dataframe(content)
         df=content
 #         for excel_file in repo:
 #             df=pd.concat([df,pd.read_csv(path+excel_file,delimiter=';',decimal='.')],axis=0,ignore_index=True)
