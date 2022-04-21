@@ -51,12 +51,10 @@ if groupe == 'phyling':
             with fs.open(filename) as f:
                 return pd.read_csv(f,delimiter=';',decimal='.')#.read().decode("utf-8")
             
-        st.write(fs.find("phyling")[0])
-
-        content = read_file("phyling/res_Thomas.csv")
-#         for excel_file in repo:
-#             df=pd.concat([df,pd.read_csv(path+excel_file,delimiter=';',decimal='.')],axis=0,ignore_index=True)
-        df=content.dropna()
+        df=pd.DataFrame()
+        for excel_file in fs.find("phyling"):
+            df=pd.concat([df,read_file(excel_file,delimiter=';',decimal='.')],axis=0,ignore_index=True)
+        df=df.dropna()
         
         if analyse == "Suivi d'indicateurs":
 
