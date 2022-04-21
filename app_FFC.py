@@ -50,6 +50,8 @@ if groupe == 'phyling':
         def read_file(filename):
             with fs.open(filename) as f:
                 return pd.read_csv(f,delimiter=';',decimal='.')#.read().decode("utf-8")
+            
+        st.write(fs.find("phyling"))
 
         content = read_file("phyling/res_Thomas.csv")
 #         for excel_file in repo:
