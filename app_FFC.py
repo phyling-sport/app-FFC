@@ -57,7 +57,7 @@ if groupe == 'phyling':
         @st.experimental_memo(ttl=600)
         def read_file(filename):
             with fs.open(filename) as f:
-                return pd.read_csv(f)#.read().decode("utf-8")
+                return pd.read_csv(f,delimiter=';',decimals='.')#.read().decode("utf-8")
 
         content = read_file("phyling/res_Thomas.csv")
         st.write(content)
