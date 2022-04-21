@@ -14,6 +14,8 @@ from scipy import stats
 from datetime import datetime, timedelta
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import s3fs
+
 
 st.set_page_config(page_title='Phyling FFC')
 # logo = Image.open('C:/Users/Chevallier/Phyling Dropbox/Phyling/Com/Logo/logo PHYLING_grand.png')
@@ -45,6 +47,12 @@ if groupe == 'phyling':
 
         st.write(dirname)
         st.write(filename)
+        
+        fs = s3fs.S3FileSystem(anon=True)
+        st.write(fs.ls('phyling'))
+
+#         with fs.open('phyling/res_Thomas.csv', 'rb') as f:
+#             print(f.read())
 #         for names in os.listdir(relative_path):
 #             if names[-1] =='v':
 #                 repo.append(names)
