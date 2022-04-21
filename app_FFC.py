@@ -60,11 +60,9 @@ if groupe == 'phyling':
                 return f.read().decode("utf-8")
 
         content = read_file("phyling/res_Thomas.csv")
+        st.dataframe(content)
 
-        # Print results.
-        for line in content.strip().split("\n"):
-            name, pet = line.split(",")
-            st.write(f"{name} has a :{pet}:")
+
 
 #         with fs.open('phyling/res_Thomas.csv', 'rb') as f:
 #             print(f.read())
