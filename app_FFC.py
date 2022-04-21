@@ -53,7 +53,7 @@ if groupe == 'phyling':
             
         df=pd.DataFrame()
         for excel_file in fs.find("phyling"):
-            df=pd.concat([df,read_file(excel_file,delimiter=';',decimal='.')],axis=0,ignore_index=True)
+            df=pd.concat([df,read_file(excel_file)],axis=0,ignore_index=True)
         df=df.dropna()
         
         if analyse == "Suivi d'indicateurs":
