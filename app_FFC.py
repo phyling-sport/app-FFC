@@ -52,8 +52,9 @@ if groupe == 'phyling':
                 return pd.read_csv(f,header=1,delimiter=';',decimal='.')#.read().decode("utf-8")
             
         df=pd.DataFrame()
-        for excel_file in fs.find("phyling"):
-            df=pd.concat([df,read_file(excel_file)],axis=0,ignore_index=True)
+        for excel_file in fs.find("s3://phyling/"+choose):
+            if excel_file[-3:]=='csv':
+                df=pd.concat([df,read_file(excel_file)],axis=0,ignore_index=True)
         df=df.dropna()
         
         if analyse == "Suivi d'indicateurs":
