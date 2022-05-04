@@ -49,7 +49,7 @@ if groupe == 'phyling':
         @st.experimental_memo(ttl=600)
         def read_file(filename):
             with fs.open(filename) as f:
-                return pd.read_csv(f,delimiter=';',decimal='.')#.read().decode("utf-8")
+                return pd.read_csv(f,header=1,delimiter=';',decimal='.')#.read().decode("utf-8")
             
         df=pd.DataFrame()
         for excel_file in fs.find("phyling"):
@@ -78,7 +78,7 @@ if groupe == 'phyling':
                 st.write('Nombre de sujet selectionnés : ',len(selected_unique_sujet))
 
                 columns = selected_df.columns.tolist()
-                selected_df.set_index(columns[0], inplace=True)
+                selected_df.set_index(columns[3], inplace=True)
 
                 columns = selected_df.columns.tolist()
                 gp_df = selected_df.groupby('date').agg({'imp': 'mean',
