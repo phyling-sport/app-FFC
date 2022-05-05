@@ -182,7 +182,6 @@ if groupe == 'phyling':
                                                    value=(start, end))
                 
                 df.set_index('date',inplace=True)
-                st.dataframe(df)
                 res1=stats.ttest_rel(df[df['athlete_name']==sujet_list].loc[end_t][val].values,
                                      df[df['athlete_name']==sujet_list].loc[start_t][val].values)
                 
