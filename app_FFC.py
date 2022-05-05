@@ -36,20 +36,20 @@ analyse= st.sidebar.selectbox(
 )
 
 
+# Create connection object.
+# `anon=False` means not anonymous, i.e. it uses access keys to pull data.
+fs = s3fs.S3FileSystem(anon=False)
+
+# Retrieve file contents.
+# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
+@st.experimental_memo(ttl=600)
+def read_file(filename):
+    with fs.open(filename) as f:
+        return pd.read_csv(f,header=1,delimiter=';',decimal='.')#.read().decode("utf-8")
+    
 col1, col2 = st.columns([0.8,0.2])
 if groupe == 'phyling':
     if choose == 'CMJ':
-
-        # Create connection object.
-        # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
-        fs = s3fs.S3FileSystem(anon=False)
-
-        # Retrieve file contents.
-        # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-        @st.experimental_memo(ttl=600)
-        def read_file(filename):
-            with fs.open(filename) as f:
-                return pd.read_csv(f,header=1,delimiter=';',decimal='.')#.read().decode("utf-8")
             
         df=pd.DataFrame()
         for excel_file in fs.find("s3://phyling/"+choose):
