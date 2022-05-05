@@ -203,15 +203,11 @@ if groupe == 'phyling':
                     st.write('p_value = ',res1[1].round(2))
 
     if choose == 'Nordic Harmstring' :
-        path='C:/Users/Chevallier/Desktop/Phyling/musculation/data/'+choose+'/resultats/'
-        repo = []
-        for names in os.listdir(path):
-            if names[-1] =='v':
-                repo.append(names)
-
+        
         df=pd.DataFrame()
-        for excel_file in repo:
-            df=pd.concat([df,pd.read_csv(path+excel_file,delimiter=';',decimal='.')],axis=0,ignore_index=True)
+        for excel_file in fs.find("s3://phyling/"+choose):
+            if excel_file[-3:]=='csv':
+                df=pd.concat([df,read_file(excel_file)],axis=0,ignore_index=True)
         df=df.dropna()
         
         if analyse == "Suivi d'indicateurs":
@@ -236,7 +232,7 @@ if groupe == 'phyling':
                 st.write('Nombre de sujet selectionnés : ',len(selected_unique_sujet))
 
                 columns = selected_df.columns.tolist()
-                selected_df.set_index(columns[0], inplace=True)
+                selected_df.set_index(columns[3], inplace=True)
 
                 columns = selected_df.columns.tolist()
                 gp_df = selected_df.groupby('date').agg({'F_max': 'mean',
