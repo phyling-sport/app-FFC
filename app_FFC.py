@@ -209,7 +209,6 @@ if groupe == 'phyling':
                              
         elif analyse == 'Comparaisons de courbes':
                              
-            path='C:/Users/Chevallier/Desktop/Phyling/Musculation/data/CMJ/courbes/'
             df=pd.DataFrame()
             for excel_file in fs.find("s3://phyling/"+choose+'/courbes'):
                 if excel_file[-3:]=='csv':
