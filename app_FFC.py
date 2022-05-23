@@ -211,7 +211,6 @@ if groupe == 'phyling':
                 if excel_file[-3:]=='csv':
                     df_courbes=pd.concat([df_courbes,read_file_courbes(excel_file)],axis=0,ignore_index=True)
             df_courbes=df_courbes.dropna()
-            st.dataframe(df_courbes)
            
             with col1:
                 st.header(analyse+' '+choose)
