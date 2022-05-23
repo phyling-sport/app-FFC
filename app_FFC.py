@@ -190,7 +190,7 @@ if groupe == 'phyling':
 
                     df.set_index('date',inplace=True)
                     
-                    if len(df[df['athlete_name']==sujet_list].loc[end_t][val].values) == len(df[df['athlete_name']==sujet_list].loc[start_t][val].values)
+                    if len(df[df['athlete_name']==sujet_list].loc[end_t][val].values) == len(df[df['athlete_name']==sujet_list].loc[start_t][val].values):
                         res1=stats.ttest_rel(df[df['athlete_name']==sujet_list].loc[end_t][val].values,
                                              df[df['athlete_name']==sujet_list].loc[start_t][val].values)
 
