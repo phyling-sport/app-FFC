@@ -162,7 +162,7 @@ if groupe == 'phyling':
             with col2:
 #                 st.image(logo, width=130 )
                 st.write("https://phyling.fr")
-            
+            col3, col4 = st.columns(2)
             res=stats.ttest_1samp(df[df['athlete_name']==sujet_list][val].values, df[val].mean())
             col3.metric('Moyenne du groupe',np.round(df[val].mean(),decimals=2), delta='', delta_color="normal")
 
