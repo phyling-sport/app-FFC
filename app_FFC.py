@@ -160,7 +160,7 @@ if groupe == 'phyling':
 
                 val = st.selectbox("Indicateur",columns,index=14)
             with col2:
-#                 st.image(logo, width=130 )
+                st.image(logo, width=130 )
                 st.write("https://phyling.fr")
             col3, col4 = st.columns(2)
             res=stats.ttest_1samp(df[df['athlete_name']==sujet_list][val].values, df[val].mean())
@@ -187,13 +187,11 @@ if groupe == 'phyling':
                     start_t, end_t = st.select_slider("Selectionnez deux dates pour comparer l'évolution entre les deux",
                                                        options=df[df['athlete_name']==sujet_list]['date'].unique(),
                                                        value=(start, end))
-
+                
                     df.set_index('date',inplace=True)
-                    
-                    if len(df[df['athlete_name']==sujet_list].loc[end_t][val].values) == len(df[df['athlete_name']==sujet_list].loc[start_t][val].values):
-                        res1=stats.ttest_rel(df[df['athlete_name']==sujet_list].loc[end_t][val].values,
-                                             df[df['athlete_name']==sujet_list].loc[start_t][val].values)
-
+                    res1=stats.ttest_rel(df[df['athlete_name']==sujet_list].loc[end_t][val].values,
+                                         df[df['athlete_name']==sujet_list].loc[start_t][val].values)
+                
                     col3, col4 = st.columns(2)
 
                     col3.metric(val + ' moyenne '+start_t,
@@ -210,10 +208,6 @@ if groupe == 'phyling':
                         else:
                             st.warning("Attention, l'écart à la moyenne n'est pas significatif")
                             st.write('p_value = ',res1[1].round(2))
-#                     elif :
-#                         st.write('Les échantillons à comparer ne sont pas de la même taille')
-#                         st.write(end_t,':',len(df[df['athlete_name']==sujet_list].loc[end_t][val].values))
-#                         st.write(start_t,':',len(df[df['athlete_name']==sujet_list].loc[start_t][val].values))
                              
         elif analyse == 'Comparaisons de courbes':
             df_courbes=pd.DataFrame()
