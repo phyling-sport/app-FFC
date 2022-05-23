@@ -46,7 +46,10 @@ fs = s3fs.S3FileSystem(anon=False)
 def read_file(filename):
     with fs.open(filename) as f:
         return pd.read_csv(f,header=1,delimiter=';',decimal='.')#.read().decode("utf-8")
-    
+def read_file_courbes(filename):
+    with fs.open(filename) as f:
+        return pd.read_csv(f,delimiter=';',decimal='.')#.read().decode("utf-8")
+
 col1, col2 = st.columns([0.8,0.2])
 if groupe == 'phyling':
     if choose == 'CMJ':
@@ -206,7 +209,7 @@ if groupe == 'phyling':
             df_courbes=pd.DataFrame()
             for excel_file in fs.find("s3://phyling/"+choose+'/courbes'):
                 if excel_file[-3:]=='csv':
-                    df_courbes=pd.concat([df_courbes,read_file(excel_file)],axis=0,ignore_index=True)
+                    df_courbes=pd.concat([df_courbes,read_file_courbes(excel_file)],axis=0,ignore_index=True)
             df_courbes=df_courbes.dropna()
             st.dataframe(df_courbes)
            
