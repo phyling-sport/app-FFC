@@ -207,8 +207,8 @@ if groupe == 'phyling':
                     st.warning("Attention, l'écart à la moyenne n'est pas significatif")
                     st.write('p_value = ',res1[1].round(2)
                              
-        elif analyse == 'Comparaisons de courbes':
-            st.write(analyse)
+    elif analyse == 'Comparaisons de courbes':
+        st.write(analyse)
 #                              df=pd.DataFrame()
 #             for excel_file in fs.find("s3://phyling/"+choose+'/courbes'):
 #                 if excel_file[-3:]=='csv':
