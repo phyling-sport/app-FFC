@@ -32,11 +32,6 @@ choose = st.sidebar.selectbox(
 
 analyse= st.sidebar.selectbox(
     "Analyse",
-    ("Suivi d'indicateurs","Statistiques")
-)
-
-analyse= st.sidebar.selectbox(
-    "Analyse",
     ("Suivi d'indicateurs","Statistiques","Comparaisons de courbes")
 )
 
@@ -207,11 +202,8 @@ if groupe == 'phyling':
                     st.warning("Attention, l'écart à la moyenne n'est pas significatif")
                     st.write('p_value = ',res1[1].round(2)
                              
-        else:
-                             with col1:
-                                 st.write(analyse)
-
-                             
+        elif analyse == 'Comparaisons de courbes':
+                             st.write(analyse)
 #                              df=pd.DataFrame()
 #             for excel_file in fs.find("s3://phyling/"+choose+'/courbes'):
 #                 if excel_file[-3:]=='csv':
