@@ -176,7 +176,6 @@ if groupe == 'phyling':
             with col1:
                 st.write('')
                 st.subheader("Analyse statistique de l'évolution")
-            col3, col4 = st.columns(2)
                 start = df[df['athlete_name']==sujet_list]['date'].unique()[0]
                 end = df[df['athlete_name']==sujet_list]['date'].unique()[-1]
                 if start == end : 
