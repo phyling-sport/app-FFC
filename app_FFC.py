@@ -173,7 +173,7 @@ if groupe == 'phyling':
                 st.warning("Attention, l'écart à la moyenne n'est pas significatif")
                 st.write('p_value = ',res[1].round(2))
             col1, col2 = st.columns([0.8,0.2])
-            col3, col4 = st.columns(2)
+            col3, col4,col5 = st.columns([0.4,0.4,0.2])
             with col1:
                 st.write('')
                 st.subheader("Analyse statistique de l'évolution")
