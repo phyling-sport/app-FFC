@@ -196,7 +196,7 @@ if groupe == 'phyling':
                         res1=stats.ttest_rel(df[df['athlete_name']==sujet_list].loc[end_t][val].values,
                                              df[df['athlete_name']==sujet_list].loc[start_t][val].values)
 
-                        col3, col4 = st.columns(2)
+                    col3, col4 = st.columns(2)
 
                         col3.metric(val + ' moyenne '+start_t,
                                     np.round(df[df['athlete_name']==sujet_list].loc[start_t][val].mean(),decimals=2),
