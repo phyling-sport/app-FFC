@@ -202,13 +202,13 @@ if groupe == 'phyling':
                                     np.round(df[df['athlete_name']==sujet_list].loc[end_t][val].mean(),decimals=2),
                                     delta=np.round(df[df['athlete_name']==sujet_list].loc[end_t][val].mean()-df[df['athlete_name']==sujet_list].loc[start_t][val].mean(),decimals=2), delta_color="normal")
 
-            col1, col2 = st.columns([0.8,0.2])
-            with col1:
-                if res1[1]<0.05:
-                    st.success('écart significatif à la moyenne du groupe')
-                else:
-                    st.warning("Attention, l'écart à la moyenne n'est pas significatif")
-                    st.write('p_value = ',res1[1].round(2))
+#                         col1, col2 = st.columns([0.8,0.2])
+#                         with col1:
+#                             if res1[1]<0.05:
+#                                 st.success('écart significatif à la moyenne du groupe')
+#                             else:
+#                                 st.warning("Attention, l'écart à la moyenne n'est pas significatif")
+#                                 st.write('p_value = ',res1[1].round(2))
                              
         elif analyse == 'Comparaisons de courbes':
             df_courbes=pd.DataFrame()
