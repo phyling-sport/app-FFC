@@ -194,26 +194,26 @@ if groupe == 'phyling':
                         res1=stats.ttest_rel(df[df['athlete_name']==sujet_list].loc[end_t][val].values,
                                              df[df['athlete_name']==sujet_list].loc[start_t][val].values)
 
-                        col3, col4 = st.columns(2)
+                    col3, col4 = st.columns(2)
 
-                        col3.metric(val + ' moyenne '+start_t,
-                                    np.round(df[df['athlete_name']==sujet_list].loc[start_t][val].mean(),decimals=2),
-                                    delta='', delta_color="normal")
-                        col4.metric(val + ' moyenne '+end_t,
-                                    np.round(df[df['athlete_name']==sujet_list].loc[end_t][val].mean(),decimals=2),
-                                    delta=np.round(df[df['athlete_name']==sujet_list].loc[end_t][val].mean()-df[df['athlete_name']==sujet_list].loc[start_t][val].mean(),decimals=2), delta_color="normal")
+                    col3.metric(val + ' moyenne '+start_t,
+                                np.round(df[df['athlete_name']==sujet_list].loc[start_t][val].mean(),decimals=2),
+                                delta='', delta_color="normal")
+                    col4.metric(val + ' moyenne '+end_t,
+                                np.round(df[df['athlete_name']==sujet_list].loc[end_t][val].mean(),decimals=2),
+                                delta=np.round(df[df['athlete_name']==sujet_list].loc[end_t][val].mean()-df[df['athlete_name']==sujet_list].loc[start_t][val].mean(),decimals=2), delta_color="normal")
 
-                        col1, col2 = st.columns([0.8,0.2])
-                        with col1:
-                            if res1[1]<0.05:
-                                st.success('écart significatif à la moyenne du groupe')
-                            else:
-                                st.warning("Attention, l'écart à la moyenne n'est pas significatif")
-                                st.write('p_value = ',res1[1].round(2))
-                    else :
-                        st.write('Les échantillons à comparer ne sont pas de la même taille')
-                        st.write(end_t,':',len(df[df['athlete_name']==sujet_list].loc[end_t][val].values))
-                        st.write(start_t,':',len(df[df['athlete_name']==sujet_list].loc[start_t][val].values))
+                    col1, col2 = st.columns([0.8,0.2])
+                    with col1:
+                        if res1[1]<0.05:
+                            st.success('écart significatif à la moyenne du groupe')
+                        else:
+                            st.warning("Attention, l'écart à la moyenne n'est pas significatif")
+                            st.write('p_value = ',res1[1].round(2))
+#                     elif :
+#                         st.write('Les échantillons à comparer ne sont pas de la même taille')
+#                         st.write(end_t,':',len(df[df['athlete_name']==sujet_list].loc[end_t][val].values))
+#                         st.write(start_t,':',len(df[df['athlete_name']==sujet_list].loc[start_t][val].values))
                              
         elif analyse == 'Comparaisons de courbes':
             df_courbes=pd.DataFrame()
