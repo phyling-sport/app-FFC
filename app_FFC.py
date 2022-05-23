@@ -179,31 +179,35 @@ if groupe == 'phyling':
 
                 start = df[df['athlete_name']==sujet_list]['date'].unique()[0]
                 end = df[df['athlete_name']==sujet_list]['date'].unique()[-1]
-                            
-                start_t, end_t = st.select_slider("Selectionnez deux dates pour comparer l'évolution entre les deux",
-                                                   options=df[df['athlete_name']==sujet_list]['date'].unique(),
-                                                   value=(start, end))
                 
-                df.set_index('date',inplace=True)
-                res1=stats.ttest_rel(df[df['athlete_name']==sujet_list].loc[end_t][val].values,
-                                     df[df['athlete_name']==sujet_list].loc[start_t][val].values)
-                
-            col3, col4 = st.columns(2)
-
-            col3.metric(val + ' moyenne '+start_t,
-                        np.round(df[df['athlete_name']==sujet_list].loc[start_t][val].mean(),decimals=2),
-                        delta='', delta_color="normal")
-            col4.metric(val + ' moyenne '+end_t,
-                        np.round(df[df['athlete_name']==sujet_list].loc[end_t][val].mean(),decimals=2),
-                        delta=np.round(df[df['athlete_name']==sujet_list].loc[end_t][val].mean()-df[df['athlete_name']==sujet_list].loc[start_t][val].mean(),decimals=2), delta_color="normal")
-            
-            col1, col2 = st.columns([0.8,0.2])
-            with col1:
-                if res1[1]<0.05:
-                    st.success('écart significatif à la moyenne du groupe')
+                if start == end : 
+                    st.write("L'athlete n'a pas assez de données pour l'analyse statistique")
                 else:
-                    st.warning("Attention, l'écart à la moyenne n'est pas significatif")
-                    st.write('p_value = ',res1[1].round(2))
+                            
+                    start_t, end_t = st.select_slider("Selectionnez deux dates pour comparer l'évolution entre les deux",
+                                                       options=df[df['athlete_name']==sujet_list]['date'].unique(),
+                                                       value=(start, end))
+
+                    df.set_index('date',inplace=True)
+                    res1=stats.ttest_rel(df[df['athlete_name']==sujet_list].loc[end_t][val].values,
+                                         df[df['athlete_name']==sujet_list].loc[start_t][val].values)
+
+                col3, col4 = st.columns(2)
+
+                col3.metric(val + ' moyenne '+start_t,
+                            np.round(df[df['athlete_name']==sujet_list].loc[start_t][val].mean(),decimals=2),
+                            delta='', delta_color="normal")
+                col4.metric(val + ' moyenne '+end_t,
+                            np.round(df[df['athlete_name']==sujet_list].loc[end_t][val].mean(),decimals=2),
+                            delta=np.round(df[df['athlete_name']==sujet_list].loc[end_t][val].mean()-df[df['athlete_name']==sujet_list].loc[start_t][val].mean(),decimals=2), delta_color="normal")
+
+                col1, col2 = st.columns([0.8,0.2])
+                with col1:
+                    if res1[1]<0.05:
+                        st.success('écart significatif à la moyenne du groupe')
+                    else:
+                        st.warning("Attention, l'écart à la moyenne n'est pas significatif")
+                        st.write('p_value = ',res1[1].round(2))
                              
         elif analyse == 'Comparaisons de courbes':
             df_courbes=pd.DataFrame()
