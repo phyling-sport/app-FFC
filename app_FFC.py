@@ -203,12 +203,11 @@ if groupe == 'phyling':
                     st.write('p_value = ',res1[1].round(2))
                              
         elif analyse == 'Comparaisons de courbes':
-            st.write(analyse)
-            df=pd.DataFrame()
+            df_courbes=pd.DataFrame()
             for excel_file in fs.find("s3://phyling/"+choose+'/courbes'):
                 if excel_file[-3:]=='csv':
-                    df=pd.concat([df,read_file(excel_file)],axis=0,ignore_index=True)
-            df=df.dropna()
+                    df_courbes=pd.concat([df_courbes,read_file(excel_file)],axis=0,ignore_index=True)
+            df_courbes=df_courbes.dropna()
             
            
             with col1:
