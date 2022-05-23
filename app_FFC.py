@@ -35,6 +35,11 @@ analyse= st.sidebar.selectbox(
     ("Suivi d'indicateurs","Statistiques")
 )
 
+analyse= st.sidebar.selectbox(
+    "Analyse",
+    ("Suivi d'indicateurs","Statistiques","Comparaisons de courbes")
+)
+
 
 # Create connection object.
 # `anon=False` means not anonymous, i.e. it uses access keys to pull data.
@@ -144,7 +149,7 @@ if groupe == 'phyling':
 #                         st.image(logo, width=130 )
                         st.write("https://phyling.fr")
                 
-        else:
+        elif analyse == 'Statistiques':
             with col1:
                 st.header(analyse+' '+choose)
                 st.subheader("Comparaison d'un athlète à la moyenne du groupe")
@@ -200,7 +205,80 @@ if groupe == 'phyling':
                     st.success('écart significatif à la moyenne du groupe')
                 else:
                     st.warning("Attention, l'écart à la moyenne n'est pas significatif")
-                    st.write('p_value = ',res1[1].round(2))
+                    st.write('p_value = ',res1[1].round(2)
+                             
+        elif analyse == 'Comparaisons de courbes':
+                             
+            path='C:/Users/Chevallier/Desktop/Phyling/Musculation/data/CMJ/courbes/'
+            df=pd.DataFrame()
+            for excel_file in fs.find("s3://phyling/"+choose+'/courbes'):
+                if excel_file[-3:]=='csv':
+                    df=pd.concat([df,read_file(excel_file)],axis=0,ignore_index=True)
+            df=df.dropna()
+            
+           
+            with col1:
+                st.header(analyse+' '+choose)
+                st.subheader("Superposition de courbes de plusieurs athlètes")
+                
+                athlete1 = st.selectbox(
+     'Athlète 1 :',
+     (df_courbes['athlete_name'].unique()))
+                
+                date1=[]
+                for d in df_courbes['date'][df_courbes['athlete_name']==athlete1].unique():
+                    date1.append(d)
+                if len(date1)>1:
+                    d1 = st.select_slider(
+         'Date athlète 1',
+         options=date1)
+                else :
+                    d1=date1[0]
+                
+                athlete2 = st.selectbox(
+     'Athlète 2 :',
+     (df_courbes['athlete_name'].unique()))
+                
+                date2=[]
+                for d in df_courbes['date'][df_courbes['athlete_name']==athlete2].unique():
+                    date2.append(d)
+                if len(date2)>1:
+                    d2 = st.select_slider(
+         'Date athlète 2',
+         options=date2)
+                else :
+                    d2=date2[0]
+                
+#                 PLOT moyennes et std
+                fig, ax = plt.subplots()
+                athl_list=[athlete1,athlete2]
+                d_list=[d1,d2]
+            
+                norm = st.checkbox('données normalisées')
+                for i in range (0,2):
+                    if norm:
+                        c=df_courbes[df_courbes['athlete_name']==athl_list[i]]
+                        c=c[c['date']==d_list[i]]
+                        x=np.linspace(0,100,np.shape(c)[0])
+
+                        ax.plot(x,c['moy'],label=athl_list[i])
+                        ax.fill_between(x,c['moy'].values-c['std'],c['moy'].values+c['std'],alpha=0.15)
+                        ax.set_xlabel("% Temps d'impulsion")
+                        
+
+                    else :
+                        c=df_courbes[df_courbes['athlete_name']==athl_list[i]]
+                        c=c[c['date']==d_list[i]]
+                        x=np.linspace(0,np.shape(c)[0],np.shape(c)[0])
+
+                        ax.plot(c['moy'].values,label=athl_list[i])
+                        ax.fill_between(x,c['moy'].values-c['std'],c['moy'].values+c['std'],alpha=0.15)
+                        ax.set_xlabel("Temps (ms)")
+                ax.grid(axis='y',alpha=0.3,linestyle='--')        
+                ax.set_ylabel("Force Verticale (N)")
+                ax.legend()
+
+                st.pyplot(fig)
 
     if choose == 'Nordic Harmstring' :
         
