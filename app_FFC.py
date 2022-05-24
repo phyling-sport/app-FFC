@@ -213,7 +213,6 @@ if groupe == 'phyling':
         elif analyse == 'Comparaisons de courbes':
             df_courbes=pd.DataFrame()
             for excel_file in fs.find("s3://phyling/"+choose+'/courbes/'):
-                st.write(excel_file)
                 if excel_file[-3:]=='csv':
                     df_courbes=pd.concat([df_courbes,read_file_courbes(excel_file)],axis=0,ignore_index=True)
             df_courbes=df_courbes.dropna()
