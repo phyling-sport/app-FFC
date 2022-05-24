@@ -216,7 +216,7 @@ if groupe == 'phyling':
                 if excel_file[-3:]=='csv':
                     df_courbes=pd.concat([df_courbes,read_file_courbes(excel_file)],axis=0,ignore_index=True)
             df_courbes=df_courbes.dropna()
-           
+#             st.dataframe(df_courbes)
             with col1:
                 st.header(analyse+' '+choose)
                 st.subheader("Superposition de courbes de plusieurs athlètes")
@@ -274,6 +274,7 @@ if groupe == 'phyling':
                         ax.plot(c['moy'].values,label=athl_list[i])
                         ax.fill_between(x,c['moy'].values-c['std'],c['moy'].values+c['std'],alpha=0.15)
                         ax.set_xlabel("Temps (ms)")
+                        
                 ax.grid(axis='y',alpha=0.3,linestyle='--')        
                 ax.set_ylabel("Force Verticale (N)")
                 ax.legend()
@@ -328,6 +329,13 @@ if groupe == 'phyling':
             with col2:
 #                         st.image(logo, width=130 )
                         st.write("https://phyling.fr")
+                        
+
+        
+                        
+
+        
+
                         
 
         
